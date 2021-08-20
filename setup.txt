@@ -1,0 +1,98 @@
+Angular Language Service
+C#
+
+
+dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
+
+ng new angular-movies
+
+
+dotnet new webapi -o MoviesAPI
+dotnet dev-certs https --trust
+
+ng generate component movies/movies-list --dry-run
+ng generate component movies/movies-list --skip-tests=true
+
+ng generate component utilities/generic-list --skip-tests=true
+
+
+ng add @angular/material
+ng generate module material
+
+ng g c menu --skip-tests=true
+ng g c utilities/rating --skip-tests=true
+
+
+ng g c lifecycletest/lifecycletest --skip-tests=true
+
+ng g c home --skip-tests=true
+
+ng g c genres/index-genre --skip-tests=true
+ng g c genres/create-genre --skip-tests=true
+
+
+ng g c actors/index-actor --skip-tests=true
+ng g c actors/create-actor --skip-tests=true
+
+ng g c movie-theaters/index-movie-theater --skip-tests=true
+ng g c movie-theaters/create-movie-theater --skip-tests=true
+
+ng g c movies/create-movie --skip-tests=true
+
+ng g c actors/edit-actor --skip-tests=true
+ng g c genres/edit-genre --skip-tests=true
+ng g c movie-theaters/edit-movie-theater --skip-tests=true
+ng g c movies/edit-movie --skip-tests=true
+
+ng g c notfound --skip-tests=true
+
+ng g c genres/form-genre --skip-tests=true
+ng g c movies/movie-filter --skip-tests=true
+
+
+ng g c actors/form-actor --skip-tests=true
+ng g c utils/input-img --skip-tests=true
+
+npm i ngx-markdown
+ng g c utilities/input-markdown --skip-tests=true
+ng g c movie-theaters/movie-theater-form --skip-tests=true
+
+npm install leaflet
+npm install @asymmetrik/ngx-leaflet
+npm install --save @types/leaflet
+ng g c utilities/map --skip-tests=true
+
+ng g c movies/form-movie --skip-tests=true
+ng g c utilities/multiple-selector --skip-tests=true
+ng g c actors/actors-autocomplete --skip-tests=true
+
+ng g s genres/genres --skip-tests=true
+
+
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+
+dotnet ef migrations add Initial
+dotnet ef database update
+
+
+ng g c utilities/display-errors --skip-tests=true
+npm install sweetalert2 @sweetalert2/ngx-sweetalert2
+
+dotnet ef migrations add actors
+dotnet ef database update
+
+ng g s actors/actors --skip-tests=true
+
+
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite
+dotnet ef migrations add movietheaters
+dotnet ef database update
+
+ng g s movie-theaters/movie-theaters --skip-tests=true
+
+dotnet ef migrations add movieAndFriends
+dotnet ef database update
