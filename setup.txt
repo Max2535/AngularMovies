@@ -48,8 +48,15 @@ ng g guard is-admin --skip-tests=true
 ng g s utilities/rating --skip-tests=true
 ng g s security/jwt-interceptor --skip-tests=true
 ng g c security/users-index --skip-tests=true
+ng build --prod
+npm install -g firebase-tools
+firebase login
+firebase init
+firebase deploy
 ------------------------------------------------------------------------------
 C#
+docker run --name mssql -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=08081992xx' -e TZ=Asia/Bangkok -p 1433:1433 -d mcr.microsoft.com/mssql/server
+
 dotnet tool install --global dotnet-ef
 dotnet tool update --global dotnet-ef
 dotnet new webapi -o MoviesAPI
@@ -72,3 +79,20 @@ dotnet ef migrations add IdentityTables
 dotnet ef database update
 dotnet ef migrations add RatingTables
 dotnet ef database update
+
+ docker build -t movies_api .
+ docker run --name movies_api -d -it  -p 5050:80 5051:443 movies_api
+
+docker run --name nginx -p 80:80 -p 443:443 -d nginx
+docker rm nginx
+
+apt install certbot python3-certbot-nginx
+rm /var/lib/letsencrypt/temp_checkpoint/*
+nano /etc/nginx/sites-available/dev-web.dedyn.io
+server_name dev-web.dedyn.io;
+certbot --nginx -d dev-web.dedyn.io
+
+
+ location ~* ^/movie/(.*) {
+            proxy_pass http://172.17.0.8:80/$1$is_args$args;
+        }

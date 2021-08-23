@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL:'http://localhost:5000/api'
+  apiURL:'https://dev-web.dedyn.io/movie/api'
 };
