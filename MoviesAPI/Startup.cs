@@ -51,7 +51,9 @@ namespace MoviesAPI
 
                     var frontendURL = Configuration.GetValue<string>("frontend_url");
 
-                    builder.WithOrigins(frontendURL)
+                    builder
+                    .WithOrigins(frontendURL)
+                    .AllowCredentials()
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .WithExposedHeaders(new string[] { "totalAmountOfRecords" });
