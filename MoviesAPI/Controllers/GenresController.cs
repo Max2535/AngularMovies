@@ -17,6 +17,7 @@ namespace MoviesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Policy = "IsAdmin")]
     public class GenresController : ControllerBase
     {
         private readonly ILogger<GenresController> _logger;
@@ -40,6 +41,7 @@ namespace MoviesAPI.Controllers
         //[ResponseCache(Duration = 60)]
         //[ServiceFilter(typeof(MyActionFilter))]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [AllowAnonymous]
         public async Task<ActionResult<List<GenreDTO>>> Get()
         {
             _logger.LogInformation("Getting all the genres");

@@ -41,9 +41,13 @@ npm install sweetalert2 @sweetalert2/ngx-sweetalert2
 ng g s actors/actors --skip-tests=true
 ng g s movie-theaters/movie-theaters --skip-tests=true
 ng g s movies/movies --skip-tests=true
-
 ng g c movies/movie-details --skip-tests=true
-
+ng g c security/authorize-view --skip-tests=true
+ng g s security/security --skip-tests=true
+ng g guard is-admin --skip-tests=true
+ng g s utilities/rating --skip-tests=true
+ng g s security/jwt-interceptor --skip-tests=true
+ng g c security/users-index --skip-tests=true
 ------------------------------------------------------------------------------
 C#
 dotnet tool install --global dotnet-ef
@@ -63,3 +67,8 @@ dotnet ef database update
 dotnet ef migrations add movieAndFriends
 dotnet ef database update
 dotnet tool update --global dotnet-ef --version 5.0.8
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet ef migrations add IdentityTables
+dotnet ef database update
+dotnet ef migrations add RatingTables
+dotnet ef database update

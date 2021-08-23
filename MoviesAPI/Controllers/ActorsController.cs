@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoviesAPI.DTOs;
@@ -13,6 +15,7 @@ namespace MoviesAPI.Controllers
 {
     [Route("api/actors")]
     [ApiController]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme,Policy = "IsAdmin")]
     public class ActorsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
@@ -32,7 +35,7 @@ namespace MoviesAPI.Controllers
         {
             var queryable = _context.Actors.AsQueryable();
             await HttpContext.InsertParametersPaginationInHeader(queryable);
-            var actors = await queryable.OrderBy(x => x.Name).Paginage(paginationDTO).ToListAsync();
+            var actors = await queryable.OrderBy(x => x.Name).Paginate(paginationDTO).ToListAsync();
             return _mapper.Map<List<ActorDTO>>(actors);
         }
 

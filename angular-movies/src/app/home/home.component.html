@@ -1,3 +1,9 @@
+<app-authorize-view [role]="'admin'">
+    <ng-container authorized>
+        You are authorized
+    </ng-container>
+</app-authorize-view>
+
 <h2>In Theaters</h2>
 <app-movies-list (onDelete)="onDelete()" [movies]="moviesInTheaters"></app-movies-list>
 
